@@ -12,12 +12,11 @@ def test_page_title():
     new_title = driver.current_url
     print("Новый URL:", new_title)
         # Проверка, что URL изменился на /forms/post.
-        # assert "https://httpbin.org/forms/post" == new_title
     assert "forms/post" in new_title, "URL не изменился!"
     print(f'URL изменился! на {new_title}')
         
-    # Вернитесь назад на главную страницу.
-    # Проверьте, что вернулись на исходный URL.
+    # Вернуться назад на главную страницу.
+    # Проверьте, что вернулся на исходный URL.
 def page_back():
     page = "https://httpbin.org/"
     driver.back()
