@@ -2,11 +2,12 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from time import sleep
-
 
 def test_session_storage_auth():
-    driver = webdriver.Chrome()
+    options = webdriver.ChromeOptions()
+    options.page_load_strategy = 'eager' 
+    driver = webdriver.Chrome(options=options)
+
 #Откройте страницу https://gitflic.ru/.
     driver.get("https://gitflic.ru/")
     driver.maximize_window()
@@ -29,22 +30,22 @@ def test_session_storage_auth():
     driver.refresh()
 # Перейдите на страницу пользователя 1.
     driver.get("https://gitflic.ru/user/treeburo")
-    sleep(5)
-
+    
 # Сохраните текущий URL.
     # Получаем текущий URL
     current_url_user1 = driver.current_url
 
-    # Провереряем совпадение
+# Провереряем совпадение
     assert current_url_user1 == "https://gitflic.ru/user/treeburo"
 
 # Разлогиньтесь (очистите куки).
     driver.delete_all_cookies()
+
 # Обновите страницу.
     driver.refresh()
     driver.get("https://gitflic.ru")
     print("Страница обновлена до ", driver.current_url)
-    sleep(3)
+    
 
 # Установите cookie пользователя 2.
     driver.add_cookie({
@@ -71,7 +72,6 @@ def test_session_storage_auth():
 # Проверьте, что URL для пользователя 1 и пользователя 2 различаются.
     assert current_url_user1 != current_url_user2
     print(f"Пользователь1: {current_url_user1} Пользователь2: {current_url_user2}")
-    sleep(3)
     driver.quit()
 
 test_session_storage_auth()
