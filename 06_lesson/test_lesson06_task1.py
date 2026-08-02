@@ -7,6 +7,7 @@ import logging
 def test_dynamic_loading():
     driver = webdriver.Chrome()
     wait = WebDriverWait(driver, 10)
+    logging.basicConfig(level=logging.INFO)
 
 # Откройте страницу https://the-internet.herokuapp.com/dynamic_loading/2.
     driver.get("https://the-internet.herokuapp.com/dynamic_loading/2")
@@ -19,6 +20,7 @@ def test_dynamic_loading():
 
 # Дождитесь появления текста Hello World!
     visible_text = wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='finish']/h4")))
+    logging.info("Текст Hello World! появился на стрнице")
 
 # Сделайте скриншот страницы.
     driver.save_screenshot(r"C:\Users\se.engineer\Desktop\Tests\Page_HW.png")
