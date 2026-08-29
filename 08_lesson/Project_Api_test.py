@@ -1,6 +1,4 @@
-import pytest
 import requests
-import json
 from functools import cached_property
 
 
