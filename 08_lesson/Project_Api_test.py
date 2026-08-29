@@ -24,7 +24,6 @@ class Project_api:
         data = {"login": login, "password": password, "companyId": companyId}
         # Отправляем POST-запрос
         response = requests.post(self.url + "auth/keys/get", headers=header, json=data)
-        last_key = response.json()[-1]["key"]
         return response.json()[-1]["key"]
 
     def greation_progect(self, data):
