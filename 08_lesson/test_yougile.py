@@ -1,5 +1,4 @@
 import pytest
-from functools import cached_property
 from Project_Api_test import Project_api
 
 api = Project_api("https://ru.yougile.com/api-v2/")
