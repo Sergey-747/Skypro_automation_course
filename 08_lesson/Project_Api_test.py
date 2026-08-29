@@ -58,7 +58,6 @@ class Project_api:
             print("Ошибка изменения:", error_details)
         return resp.json()
 
-    # Работает
     def id_last_projects(self):
         """Получение информации об ID последнего проекта"""
         # Подготавливаем заголовок
@@ -71,7 +70,6 @@ class Project_api:
         last_project_id = resp_data["content"][-1]["id"]
         return last_project_id
 
-    # работает
     def last_project(self, project_id):
         """Получение информации о последнем проекте"""
         header = {
