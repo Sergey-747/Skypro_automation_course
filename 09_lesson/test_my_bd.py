@@ -13,7 +13,6 @@ def test_add_users(db_connection):
         "INSERT INTO student (user_id, level, education_form, subject_id) VALUES (:user_id, :level, :education_form, :subject_id)"
     )
     
-    # Сначала родитель (users)
     db_connection.execute(
         sql_user,
         {
@@ -22,7 +21,6 @@ def test_add_users(db_connection):
             "subject_id": subject_id,
         },
     )
-    # Затем потомок (student)
     db_connection.execute(
         sql_student,
         {
@@ -50,13 +48,11 @@ def test_change_user(db_connection):
     old_email = "director@mail.ru"
     new_email = "new_director@mail.ru"
 
-    # Подготовка данных: создаем пользователя для этого изолированного теста
     db_connection.execute(
         text("INSERT INTO users (user_id, user_email, subject_id) VALUES (:id, :email, 1)"),
         {"id": user_id, "email": old_email}
     )
 
-    # Действие: обновляем email
     sql_update = text(
         """
         UPDATE users 
@@ -93,7 +89,6 @@ def test_del_user_id(db_connection):
     """Удаление пользователя и его данных студента по ID"""
     user_id = 70
 
-    # Подготовка данных: создаем изолированного пользователя и студента
     db_connection.execute(
         text("INSERT INTO users (user_id, user_email, subject_id) VALUES (:id, 'to_delete@mail.ru', 1)"),
         {"id": user_id}
@@ -103,7 +98,6 @@ def test_del_user_id(db_connection):
         {"id": user_id}
     )
 
-    # Действие: удаляем в правильном порядке (сначала дочерний student, затем родитель users)
     sql_student = text("DELETE FROM student WHERE user_id = :user_id")
     sql_user = text("DELETE FROM users WHERE user_id = :user_id")
     
