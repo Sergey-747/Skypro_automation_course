@@ -60,6 +60,13 @@ deactivate                # Для Linux/macOS и Windows
 ```bash
 pip install -r requirements.txt
 ```
+**Создайте файл requirements.txt и поместите его в папку с проектом**
+```
+pytest==8.0.0
+selenium==4.18.1
+requests>=2.31.0
+allure>=2.46.1
+```
 
 ---
 
@@ -163,7 +170,13 @@ deactivate                # Для Linux/macOS и Windows
 ```bash
 pip install -r requirements.txt
 ```
-
+**Создайте файл requirements.txt и поместите его в папку с проектом**
+```
+pytest==8.0.0
+selenium==4.18.1
+requests>=2.31.0
+allure>=2.46.1
+```
 ---
 
 ## 🏃 Запуск тестов
